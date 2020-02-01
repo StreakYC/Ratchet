@@ -13,7 +13,7 @@ is added to the table with tip=true and version set to the previous tip row's ve
 
 ## Basic Usage
 
-```
+```java
 import com.streak.ratchet.Annotations.Key;
 import com.streak.ratchet.Annotations.Table;
 import com.streak.ratchet.Annotations.Tip;
@@ -32,7 +32,7 @@ public class Simple {
 }
 ```
 
-```
+```java
 Simple s = new Simple();
 s.idString = "key";
 RatchetService.save(s);
@@ -49,7 +49,7 @@ these).  As a minimum they require a table and an index.
 
 We'll assume this slightly more complex class:
 
-```
+```java
 @Table
 public class Complex {
     @Key
@@ -82,8 +82,7 @@ public class Complex {
 }
 ```
 
-
-```
+```sql
 CREATE TABLE Complex (
     id INT64 NOT NULL,
     version INT64 NOT NULL,
@@ -103,7 +102,7 @@ in the database for each id and to allow us to quickly find which version is tip
 key, we don't need to explicitly add it to our STORING declaration).
 Lists, such as `sub`, are stored in interleaved tables.
 
-```
+```sql
 CREATE TABLE Complex_sub (
     id INT64 NOT NULL,
     version INT64 NOT NULL,
